@@ -1,48 +1,73 @@
-# Desafio-2-2026.1-Frontend
+# 🔶 EngNet — Landing Page
 
-O desafio consiste em reproduzir uma Landing Page a partir de um design no Figma, [link](https://www.figma.com/design/OhgjHVenrfKh9WDukfdyRn/EngNet_Figma?node-id=106-136&t=MP9be8DDc5q0dWz6-1). Você deverá realizar a inspeção técnica dos elementos e desenvolver uma página "Pixel Perfect" (o mais fiel possível ao layout original).
-O que você vai praticar:
+> Desafio de desenvolvimento front-end: reproduzir um design do Figma em uma página web funcional e acessível.
 
-   - Inspeção Técnica: Identificar cores (Hex/RGB), tipografia, espaçamentos e bordas.
+---
 
-   - Estilização Moderna: Domínio de Tailwind CSS para um desenvolvimento ágil.
+## 🎨 Design & Tecnologias
 
-   - Responsividade: Garantir que a página seja impecável em Desktop, Tablet e Mobile.
+| Item | Detalhe |
+|---|---|
+| Protótipo | Figma |
+| HTML | Semântico e acessível |
+| CSS | Tailwind CSS (via CDN) |
+| JavaScript | Vanilla JS (arquivo separado) |
+| Fonte | Montserrat — ExtraBold, Bold, Semibold, Regular |
 
-   - Clean Code: Organização, indentação e separação de responsabilidades.
+### Paleta de Cores
 
-## 🛠️ Tecnologias Exigidas
+| Nome | Hex |
+|---|---|
+| 🟠 Laranja | `#FF8D28` |
+| 🟣 Roxo | `#8A38F5` |
+| ⚫ Preto | `#000000` |
+| ⚪ Branco | `#FFFFFF` |
 
-Para este desafio, você deve utilizar obrigatoriamente:
+---
 
-  - HTML5 (Semântico)
+## 📁 Estrutura de Arquivos
 
-   - Tailwind CSS (Configurado via CDN ou CLI)
+```
+engnet/
+├── index.html
+├── style.css
+├── script.js
+└── assets/
+    ├── logos, fotos, ícones...
+```
 
-   - JavaScript (Em arquivo separado, caso haja interações)
+---
 
-## 📋 Requisitos da Entrega
+## 🗂️ Seções da Página
 
-Para que sua entrega seja validada, o projeto deve conter:
+| # | Seção |
+|---|---|
+| 1 | Navbar |
+| 2 | Hero |
+| 3 | Nossos Serviços |
+| 4 | O que somos |
+| 5 | Quem somos  + Missão, Visão e Valores |
+| 6 | Cases |
+| 7 | Contato |
 
-  -  Fidelidade Visual: Respeito absoluto às escolhas do designer no Figma. (dica: Procure ícones em sites especializados como [esse](https://www.flaticon.com/br/))
+---
 
-   - Responsividade: Adaptação fluida para diferentes tamanhos de tela.
+## ✨ Funcionalidades Extras
 
-  -  Links Funcionais: Integrações de e-mail, Google Maps e WhatsApp devem estar operantes. (dica: leia [esse artigo](https://faq.whatsapp.com/5913398998672934) para criar o link para o whatsapp) 
+- 🌙 **Modo claro/escuro** — alterna via botão na navbar, preferência salva no `localStorage`
+- ♿ **Acessibilidade** — Skip Link, foco visível, atributos ARIA, HTML semântico e `lang="pt-BR"`
+- 🤟 **VLibras** — tradução do conteúdo para Libras via plugin oficial do Governo Federal
+- 🔗 **Links funcionais** — WhatsApp (`wa.me`), e-mail (`mailto:`) e endereço (Google Maps)
+- 📱 **Responsivo** — mobile, tablet e desktop
 
-  -  GitHub Pages: O projeto deve estar publicado e acessível via link público.
+---
 
-  -  Organização: Código legível e repositório bem estruturado.
+## 🌐 Deploy
 
-## 🚀 Como Entregar
+O site está disponível via **GitHub Pages**: [acesse aqui](https://camilasilvac.github.io/Desafio-2-2026.1-Frontend/)
 
-  -  Fork: Faça um fork deste repositório para a sua conta pessoal.
+---
 
-  -  Desenvolvimento: Codifique sua solução seguindo o design do Figma disponibilizado.
+## 🚀 Como rodar localmente
 
-  -  Deploy: Ative o GitHub Pages nas configurações do seu repositório.
-
-  -  Release: Crie uma Release no GitHub contendo a versão final do código.
-
-  -  Google Classroom: Envie o link do seu repositório + Link do GitHub Pages + Arquivo ZIP da Release.
+Abra o `index.html` no navegador — sem dependências, build ou instalação.

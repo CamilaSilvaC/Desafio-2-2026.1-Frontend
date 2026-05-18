@@ -36,7 +36,7 @@ function aplicarTema(tema) {
 }
 
 
-const temaSalvo = localStorage.getItem('tema') || 'dark'
+const temaSalvo = localStorage.getItem('tema') || 'light'
 aplicarTema(temaSalvo)
 
 btnTema.addEventListener('click', function () {
