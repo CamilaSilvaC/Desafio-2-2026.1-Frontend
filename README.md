@@ -12,7 +12,7 @@
 | HTML | Semântico e acessível |
 | CSS | Tailwind CSS (via CDN) |
 | JavaScript | Vanilla JS (arquivo separado) |
-| Fonte | Montserrat — ExtraBold, Bold, Semibold, Regular |
+| Fonte | Montserrat |
 
 ### Paleta de Cores
 
