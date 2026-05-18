@@ -1,0 +1,23 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Menu mobile */
+#menu-mobile {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#menu-mobile.aberto {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* Foco visível — foco em nos elementos interativos*/
+:focus-visible {
+  outline: 2px solid #FF8D28;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngNet — Soluções de Engenharia</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/Logo.png" />
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+  <!-- Configuração do Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            laranja: '#FF8D28',
+            roxo:    '#8A38F5',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="font-sans bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
+
+  <!-- SKIP LINK -->
+  <a
+    href="#conteudo-principal"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-laranja focus:text-black focus:font-bold focus:px-4 focus:py-2 focus:rounded"
+  >
+    Pular para o conteúdo principal
+  </a>
+
+  <!--  NAVBAR -->
+  <nav
+    id="navbar"
+    class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm"
+    role="navigation"
+    aria-label="Menu principal"
+  >
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2" aria-label="EngNet — página inicial">
+        <img src="assets/Logo.png" alt="Logo EngNet" class="h-10 w-auto" />
+        <span class="text-white font-bold text-4xl tracking-wide">EngNet</span>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="hidden md:flex items-center gap-8 text-xs font-bold tracking-widest uppercase" role="list">
+        <li><a href="#home"     class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded">Home</a></li>
+        <li><a href="#sobre"    class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded">Sobre Nós</a></li>
+        <li><a href="#servicos" class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded">Serviços</a></li>
+        <li><a href="#cases"    class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded">Cases</a></li>
+        <li><a href="#contato"  class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded">Contato</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+
+        <!-- Botão Dark/Light -->
+        <button
+          id="btn-tema"
+          aria-label="Alternar modo claro e escuro"
+          title="Alternar tema"
+          class="w-9 h-9 rounded-full flex items-center justify-center border border-white/20 text-white hover:border-laranja hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja"
+        >
+          <!-- Ícone lua (dark) -->
+          <svg id="icone-lua" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+          </svg>
+          <!-- Ícone sol (light) -->
+          <svg id="icone-sol" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Botão mobile -->
+        <button
+          id="btn-menu"
+          class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none focus:ring-2 focus:ring-laranja rounded"
+          aria-label="Abrir menu de navegação"
+        >
+          <span class="block w-6 h-0.5 bg-white" ></span>
+          <span class="block w-6 h-0.5 bg-white" ></span>
+          <span class="block w-6 h-0.5 bg-white" ></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <div id="menu-mobile" class="md:hidden bg-black px-6 pb-4" role="region" aria-label="Menu mobile">
+      <ul class="flex flex-col gap-5 text-xs font-bold tracking-widest uppercase pt-2" role="list">
+        <li><a href="#home"     class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded" onclick="fecharMenu()">Home</a></li>
+        <li><a href="#sobre"    class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded" onclick="fecharMenu()">Sobre Nós</a></li>
+        <li><a href="#servicos" class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded" onclick="fecharMenu()">Serviços</a></li>
+        <li><a href="#cases"    class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded" onclick="fecharMenu()">Cases</a></li>
+        <li><a href="#contato"  class="text-white hover:text-laranja transition-colors focus:outline-none focus:ring-2 focus:ring-laranja rounded" onclick="fecharMenu()">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- Main -->
+  <main id="conteudo-principal">
+
+    <!-- HERO -->
+    <section
+      id="home"
+      class="min-h-screen bg-black flex items-center pt-28 pb-16"
+      aria-label="Início"
+    >
+      <div class="max-w-6xl mx-auto px-6 w-full">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+
+          <div class="flex-1">
+            <p class="text-white text-xs font-semibold tracking-widest uppercase mb-5">
+              Somos uma empresa júnior de tecnologia
+            </p>
+
+            <h1 class="text-5xl md:text-6xl font-extrabold text-laranja uppercase leading-[1.1] mb-6">
+              Soluções de<br />
+              Engenharia para<br />
+              Superar Novos<br />
+              Desafios
+            </h1>
+
+            <div class="text-white text-sm leading-relaxed mb-8 max-w-md space-y-5">
+              <p>Soluções de engenharia prontas para o uso, raramente resolvem todos os desafios do dia a dia. É por isso que criamos soluções personalizadas e focamos no desenvolvimento de maneira conjunta com o cliente.</p>
+              <p>Converse com os nossos consultores e garanta que a solução e tecnologia funcione para você (e não o contrário).</p>
+            </div>
+
+            <a
+              href="#contato"
+              class="inline-block bg-roxo text-white font-bold text-xs tracking-widest uppercase px-8 py-3 rounded-full hover:opacity-80 transition-opacity"
+            >
+              Fale Conosco!
+            </a>
+          </div>
+
+          <div class="flex-shrink-0" aria-hidden="true">
+            <img src="assets/logo_3D.png" alt="" class="w-[451px] h-[527px] object-contain" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section
+      id="servicos"
+      class="bg-white dark:bg-neutral-900 py-20"
+      aria-labelledby="titulo-servicos"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+
+        <p class="text-laranja text-2xl font-bold tracking-widest uppercase mb-1">Conte conosco</p>
+        <h2 id="titulo-servicos" class="text-3xl md:text-4xl font-extrabold text-black dark:text-white uppercase mb-4">
+          Nossos Serviços
+        </h2>
+        <a
+          href="#contato"
+          class="inline-block bg-laranja text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full hover:opacity-80 transition-opacity "
+        >
+          Saiba mais
+        </a>
+
+        <!-- Card principal -->
+        <div class="flex justify-center mb-14">
+          <div class="text-center max-w-xs">
+            <img src="assets/solucoes-laranja.png" alt="" aria-hidden="true" class="w-20 mx-auto mb-4" />
+            <h3 class="text-black dark:text-white font-bold text-base mb-2">Soluções Personalizadas</h3>
+            <p class="text-black dark:text-gray-400 text-sm leading-relaxed">
+              Soluções que se adequam à sua necessidade, abrangemos a integração do
+              hardware ao software para a implementação do projeto.
+            </p>
+          </div>
+        </div>
+
+      
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+
+          <div class="text-center max-w-xs mx-auto">
+            <img src="assets/aplicativos-laranja.png" alt="" aria-hidden="true" class="w-20 mx-auto mb-4" />
+            <h3 class="text-black dark:text-white font-bold text-base mb-2">Aplicativos</h3>
+            <p class="text-black dark:text-gray-400 text-sm leading-relaxed">
+              O desenvolvimento de aplicativos é destinado a novos empreendedores ou
+              empresas que buscam oferecer experiências personalizadas para seus
+              usuários, facilitando e automatizando processos para o uso intuitivo do cliente.
+            </p>
+          </div>
+
+          <div class="text-center max-w-xs mx-auto">
+            <img src="assets/sites-laranja.png" alt="" aria-hidden="true" class="w-20 mx-auto mb-4" />
+            <h3 class="text-black dark:text-white font-bold text-base mb-2">Sites</h3>
+            <p class="text-black dark:text-gray-400 text-sm leading-relaxed">
+              Se torne visível na internet, divulgue a imagem da sua instituição para o
+              público e potencialize sua prospecção passiva e conversões online.
+            </p>
+          </div>
+
+          <div class="text-center max-w-xs mx-auto">
+            <img src="assets/consultoria-laranja.png" alt="" aria-hidden="true" class="w-20 mx-auto mb-4" />
+            <h3 class="text-black dark:text-white font-bold text-base mb-2">Concepções Digitais</h3>
+            <p class="text-black dark:text-gray-400 text-sm leading-relaxed">
+              Verifique a viabilidade tecnológica do seu projeto e amadureça a sua
+              ideia por meio da coleta de requisitos e prototipação.
+            </p>
+          </div>
+
+          <div class="text-center max-w-xs mx-auto">
+            <img src="assets/sistemas-web-laranja.png" alt="" aria-hidden="true" class="w-20 mx-auto mb-4" />
+            <h3 class="text-black dark:text-white font-bold text-base mb-2">Sistemas Web</h3>
+            <p class="text-black dark:text-gray-400 text-sm leading-relaxed">
+              Se adeque a todos os tipos de dispositivos por um sistema web que
+              automatiza e organiza processos conforme sua personalização.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section
+      id="sobre"
+      class="bg-white dark:bg-neutral-900 py-20"
+      aria-labelledby="titulo-sobre"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+
+      <!-- BLOCO 1: O que somos -->
+      <div class="flex flex-col md:flex-row items-start justify-between gap-16 mb-24">
+
+        <div class="max-w-[620px]">
+          <p class="text-laranja text-xl font-bold tracking-widest uppercase mb-2">
+            O que somos
+          </p>
+
+          <h2
+            id="titulo-sobre"
+            class="text-2xl md:text-[40px] leading-none font-extrabold text-black dark:text-white uppercase mb-6 whitespace-nowrap"
+          >
+            Empresa Junior de Tecnologia
+          </h2>
+
+          <div class="text-black dark:text-gray-300 text-sm leading-relaxed space-y-5">
+            <p>
+              Uma empresa júnior é uma organização sem fins lucrativos composta por estudantes universitários que se dedicam a oferecer serviços de consultoria e desenvolvimento para empresas.
+            </p>
+
+            <p>
+              A ideia principal da empresa júnior é proporcionar uma oportunidade para que os estudantes possam aplicar na prática os conhecimentos adquiridos na universidade e, ao mesmo tempo, ajudar empresas e organizações a solucionar problemas e aprimorar seus processos de negócio.
+            </p>
+
+            <p>
+              Além disso, a empresa júnior também promove o desenvolvimento pessoal e profissional dos estudantes, que têm a oportunidade de desenvolver habilidades de liderança, trabalho em equipe, negociação, comunicação, entre outras competências importantes para o mercado de trabalho.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="flex justify-center md:self-start pt-20">
+          <img
+            src="assets/sobre-equipe.png"
+            alt="Membro da equipe EngNet segurando banner da empresa"
+            class="w-72 md:w-[600px] object-contain"
+          />
+        </div>
+      </div>
+
+      <!-- BLOCO 2: Quem somos -->
+      <div class="flex flex-col md:flex-row items-end justify-between gap-16 mb-20">
+
+
+        <div class="flex justify-center">
+          <img
+            src="assets/sobre-consultoria.png"
+            alt="Membro da EngNet Consultoria"
+            class="w-72 md:w-[620px] object-contain"
+          />
+        </div>
+
+        <div class="max-w-[620px]">
+          <p class="text-laranja text-xl font-bold tracking-widest uppercase mb-2">
+            Quem somos
+          </p>
+
+          <h2
+            class="text-2xl md:text-[40px] leading-none font-extrabold text-black dark:text-white uppercase mb-6 whitespace-nowrap"
+          >
+            EngNet Consultoria
+          </h2>
+
+          <div class="text-black dark:text-gray-300 text-sm leading-relaxed space-y-4">
+            <p>
+              Somos uma empresa júnior de tecnologia que se destaca por seu compromisso em fornecer soluções completas para seus clientes, através da aplicação das diferentes áreas de conhecimento dos cursos de Engenharia de Redes, Engenharia Elétrica, Engenharia de Software, Engenharia Mecatrônica e Ciência da Computação.
+            </p>
+
+            <p>
+              Fundada em 2007, na Universidade de Brasília (UnB), a EngNet tem como objetivo oferecer vivência empresarial aos alunos, promovendo o desenvolvimento de habilidades e competências necessárias para a atuação no mercado de trabalho. Além disso, a empresa possui uma equipe comprometida, que busca sempre a transformação, o despertar do propósito e a concretização de sonhos de seus clientes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+        <!-- BLOCO 3: Missão, Visão e Valores -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+
+          <div>
+            <img src="assets/Logo.png" alt="" aria-hidden="true" class="w-14 mx-auto mb-4" />
+            <h3 class="text-roxo font-bold text-3xl mb-3">Missão</h3>
+            <p class="text-black dark:text-gray-300 text-sm leading-relaxed">Fomentar o empreendedorismo formando lideranças e trazendo vivência empresarial.</p>
+          </div>
+
+          <div>
+            <img src="assets/Logo.png" alt="" aria-hidden="true" class="w-14 mx-auto mb-4" />
+            <h3 class="text-roxo font-bold text-3xl mb-3">Visão</h3>
+            <p class="text-black dark:text-gray-300 text-sm leading-relaxed">Se consolidar como empresa protagonista e referência na qualidade de produtos de tecnologia.</p>
+          </div>
+
+          <div>
+            <img src="assets/Logo.png" alt="" aria-hidden="true" class="w-14 mx-auto mb-4" />
+            <h3 class="text-roxo font-bold text-3xl mb-3">Valores</h3>
+            <p class="text-black dark:text-gray-300 text-sm leading-relaxed">Colaboração, Aprendizado Constante, Comprometimento, Confiança e Sangue Laranja.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section
+      id="cases"
+      class="bg-black dark:bg-black py-20"
+      aria-labelledby="titulo-cases"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+
+        <p class="text-[32px] font-bold text-laranja uppercase leading-[150%] tracking-[1.43px] mb-1">Nossos</p>
+        <h2 id="titulo-cases" class="text-3xl md:text-4xl font-extrabold text-white uppercase mb-12">Cases</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <article class="bg-white rounded-xl hover:scale-[1.03] transition-transform duration-200 flex flex-col">
+            <div class="h-48 bg-white rounded-[11px] overflow-hidden">
+              <img src="assets/logo-viana-costa.png" alt="Logo Viana Costa" class="w-full h-full object-contain" />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-black font-extrabold text-sm uppercase mb-1">Plataforma Web: Viana Costa</h3>
+              <span class="text-black text-xs font-bold uppercase tracking-widest mb-3">Sistemas Web</span>
+              <p class="text-black text-xs uppercase leading-relaxed mb-6 flex-1">
+                O Viana Costa é um preparatório para colégios militares que recebem alunos
+                do 3º ao 9º ano de várias escolas, para aprimorar em excelência as disciplinas
+                de Português e Matemática, através de aulas...
+              </p>
+              <a href="#" class="inline-block bg-roxo text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full hover:opacity-80 transition-opacity self-start">
+                Saiba mais &gt;
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bg-white rounded-xl hover:scale-[1.03] transition-transform duration-200 flex flex-col">
+            <div class="h-48 bg-white rounded-[11px] overflow-hidden">
+              <img src="assets/logo-emdia.png" alt="Logo EMDIA" class="w-full h-full object-contain" />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-black font-extrabold text-sm uppercase mb-1">App: EMDIA</h3>
+              <span class="text-black text-xs font-bold uppercase tracking-widest mb-3">Aplicativo</span>
+              <p class="text-black text-xs uppercase leading-relaxed mb-6 flex-1">
+                Com o advento da pandemia, a rotina do mundo inteiro mudou. A necessidade
+                de encontrar outros meios de se exercitar além das academias, implicou na
+                criação do Emdia, criado pelo Guilherme Fernando...
+              </p>
+              <a href="#" class="inline-block bg-roxo text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full hover:opacity-80 transition-opacity self-start">
+                Saiba mais &gt;
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bg-white rounded-xl hover:scale-[1.03] transition-transform duration-200 flex flex-col">
+            <div class="h-48 bg-blue-600 rounded-[11px] overflow-hidden">
+              <img src="assets/logo-concentro.png" alt="Logo Concentro — Federação das Empresas Juniores do Distrito Federal" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-black font-extrabold text-sm uppercase mb-1">Site Institucional: Concentro</h3>
+              <span class="text-black text-xs font-bold uppercase tracking-widest mb-3">Site</span>
+              <p class="text-black text-xs uppercase leading-relaxed mb-6 flex-1">
+                A Concentro é a federação das empresas juniores do Distrito Federal. A função
+                da federação é representar, expandir, desenvolver, prestar suporte, alinhar,
+                integrar e regulamentar as empresas juniores...
+              </p>
+              <a href="#" class="inline-block bg-roxo text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full hover:opacity-80 transition-opacity self-start">
+                Saiba mais &gt;
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section
+      id="contato"
+      class="bg-black py-20"
+      aria-labelledby="titulo-contato"
+    >
+      <div class="max-w-5xl mx-auto px-6">
+
+        <div class="rounded-2xl overflow-hidden flex flex-col md:flex-row">
+
+          
+          <div class="bg-white p-10 flex flex-col justify-center gap-8 md:w-1/2">
+
+            <div>
+              <h2 id="titulo-contato" class="text-xl font-extrabold text-black uppercase mb-4">
+                Envie uma mensagem!
+              </h2>
+              <p class="text-black text-xs uppercase leading-relaxed font-semibold">
+                Converse diretamente com um dos nossos consultores e veja como pode
+                ser simples, rápido e barato resolver o seu problema. Estamos prontos para te ajudar!
+              </p>
+            </div>
+
+            <!-- WhatsApp -->
+            <a
+              href="https://wa.me/5561921357397?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EngNet!"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 hover:opacity-70 transition-opacity "
+              aria-label="Falar com a EngNet pelo WhatsApp: (61) 9213-7397"
+            >
+              <img src="assets/icone-whatsapp.png" alt="" aria-hidden="true" class="w-12 h-12 flex-shrink-0" />
+              <span class="text-black font-bold text-sm uppercase">(61) 9213-7397</span>
+            </a>
+
+            <!-- E-mail -->
+              <a
+                href="mailto:contato@engnetconsultoria.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-4 hover:opacity-70 transition-opacity "
+                aria-label="Enviar e-mail para contato@engnetconsultoria.com.br"
+              >
+                <img src="assets/icone-email.png" alt="" aria-hidden="true" class="w-12 h-12 flex-shrink-0" />
+                <span class="text-black font-bold text-sm uppercase">contato@engnetconsultoria.com.br</span>
+              </a>
+
+            <!-- Localização -->
+            <a
+              href="https://maps.google.com/?q=-15.765584,-47.871956"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 hover:opacity-70 transition-opacity"
+              aria-label="Ver localização no Google Maps"
+            >
+              <img src="assets/icone-localizacao.png" alt="" aria-hidden="true" class="w-12 h-12 flex-shrink-0" />
+              <address class="text-black font-bold text-sm uppercase leading-relaxed not-italic">
+                Campus Universitário Darcy Ribeiro —<br />
+                Faculdade de Tecnologia - SG 11 - AT 4/7 - Asa Norte
+              </address>
+            </a>
+
+          </div>
+
+          <!-- Formulário de contato -->
+          <div class="bg-laranja p-10 flex flex-col justify-center md:w-1/2">
+
+            <form action="" method="POST" class="flex flex-col gap-4" aria-label="Formulário de contato" novalidate>
+
+              <div>
+                <label for="nome" class="sr-only">Nome</label>
+                <input
+                  id="nome"
+                  type="text"
+                  name="nome"
+                  placeholder="NOME*"
+                  required
+                  autocomplete="name"
+                  class="w-full bg-white text-black placeholder-gray-400 text-xs font-semibold uppercase tracking-widest px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="sr-only">E-mail</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="E-MAIL*"
+                  required
+                  autocomplete="email"
+                  class="w-full bg-white text-black placeholder-gray-400 text-xs font-semibold uppercase tracking-widest px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
+                />
+              </div>
+
+              <div>
+                <label for="telefone" class="sr-only">Telefone</label>
+                <input
+                  id="telefone"
+                  type="tel"
+                  name="telefone"
+                  placeholder="TELEFONE"
+                  autocomplete="tel"
+                  class="w-full bg-white text-black placeholder-gray-400 text-xs font-semibold uppercase tracking-widest px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
+                />
+              </div>
+
+              <div>
+                <label for="assunto" class="sr-only">Assunto</label>
+                <textarea
+                  id="assunto"
+                  name="assunto"
+                  placeholder="ASSUNTO*"
+                  rows="3"
+                  required
+                  class="w-full bg-white text-black placeholder-gray-400 text-xs font-semibold uppercase tracking-widest px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-black resize-none"
+                ></textarea>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  class="bg-roxo text-white font-bold text-xs tracking-widest uppercase px-10 py-3 rounded-full hover:opacity-80 transition-opacity "
+                >
+                  ENVIAR
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+  <!-- Inicia VLibras -->
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+</body>
+</html>
